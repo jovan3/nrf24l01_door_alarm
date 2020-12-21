@@ -6,7 +6,8 @@ RF24 radio(7, 8); // CE, CSN
 
 const byte address[6] = "00001";
 const byte LED_PIN = 9;
-const char text[] = "door_alarm/open";
+const char textOpen[] = "door_alarm/open";
+const char textClosed[] = "door_alarm/closed";
 
 void wake ()
 {
@@ -27,7 +28,8 @@ void setup ()
 
 
 void transmit() {
-  radio.write(&text, sizeof(text));
+  radio.write(&textOpen, sizeof(textOpen));
+  radio.write(&textClosed, sizeof(textClosed));
 }
 
 void loop ()
@@ -37,9 +39,9 @@ void loop ()
   pinMode (LED_PIN, OUTPUT);
   for (byte i = 0; i < 5; i++) { //flash the LED
     digitalWrite(LED_PIN, HIGH);
-    delay(50);
+    delay(10);
     digitalWrite(LED_PIN, LOW);
-    delay(50);
+    delay(10);
   }
 
   transmit();
@@ -73,4 +75,4 @@ void loop ()
   interrupts ();  // one cycle
   sleep_cpu ();   // one cycle
 
-} // end of loop
+}

@@ -1,0 +1,13 @@
+# ESP8266 WiFi nrf24l01 gateway
+
+Connects to a WiFi AP, sends data received from nrf24l01 devices to an MQTT broker.
+
+## Building
+
+Requires espmake. The `libs` directory contains some required libraries. Some subdirs in `libs/RF24` needed to be deleted, because espmake tries to compile AVR code.
+
+Run `espmake`.
+
+## Installing
+
+Run `espmake flash`
